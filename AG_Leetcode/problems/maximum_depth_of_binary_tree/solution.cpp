@@ -14,17 +14,12 @@ public:
     int maxDepth(TreeNode* root) {
         
         
-     if(root == NULL){
-         return 0;
-     }   
-    int ans =0;
+        if(root == NULL){
+            return 0;
+        }
         
         
-    int smallans = maxDepth(root->left);
-    int smallans2 = maxDepth(root->right);
-        
-        
-    return max(smallans,smallans2) +1;
+        else return 1 + max( maxDepth(root->left) , maxDepth(root->right) );
         
         
         
