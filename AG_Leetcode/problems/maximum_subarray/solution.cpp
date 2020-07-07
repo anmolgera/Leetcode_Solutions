@@ -2,97 +2,65 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
         
-        
-       
-        int n = nums.size();
-        
         int sum =0;
-        int mx =0;
+        int max_sum=0;
         
-        int flag =0;
-        for(int i =0; i<n; i++){
+        if(nums.size()==1){
+            return nums[0];
+        }
+        
+        bool status =  false;
+        
+        for(int i =0; i<nums.size(); i++){
+            
+            
             
             if(nums[i]>=0){
+                status = true;
                 
+            }
+        }
+        
+        
+        if(status){
+        
+        for(int i =0; i<nums.size(); i++){
+            
+            sum+=nums[i];
+            
+            if(sum<0){
                 
-                flag =1;
-                
-                
+                sum =0;
             }
             
             
-            
+            if(sum > max_sum){
+                
+                max_sum = sum;
+            }
             
             
         }
         
+        return max_sum;
         
-        if(flag ==0){
-            
-            int mn = INT_MIN;
-            for(int i =0; i<n; i++){
-                
-                if(nums[i]>mn){
-                    
-                    mn = nums[i];
-                }
-                
-                
-            }
-            
-            
-            
-          return mn;  
-            
         }
         
-       
-        
-        
-        
-        
-        
-        for(int i =0; i<n; i++){
+        else {
             
+            int min1 = INT_MIN;
             
-            if(nums[i] + sum >=0){
-                
-                
-                sum +=nums[i];
-                
-                if(sum>mx){
-                    
-                    mx = sum;
-                }
-                
-                
+            for(int i =0; i<nums.size(); i++){
+             min1 = max(min1,nums[i]);
                 
             }
             
             
-            else if(nums[i] + sum <0){
-                
-                
-                sum = 0;
-            }
-            
-            
-            
+            return min1;
             
             
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    return mx;    
         
         
     }
