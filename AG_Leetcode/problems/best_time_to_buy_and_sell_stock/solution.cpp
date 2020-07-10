@@ -1,36 +1,30 @@
 class Solution {
 public:
-    int maxProfit(vector<int>&A) {
-    int mx = 0;    
-    int n = A.size();    
-        int sum =0;
-    
-     int proft =0;   
-    for(int i =1; i<n; i++){
+    int maxProfit(vector<int>& a) {
+         
+        int min = INT_MAX;
+        int max_profit = 0;
         
-        if(A[i]-A[i-1] + sum >=0){
+        
+        for(int i =0; i<a.size(); i++){
             
-            sum += A[i]-A[i-1];
-            
-            
-            
-            if(sum>mx){
+            if(a[i]<min){
                 
-                mx = sum;
+                min = a[i];
             }
-        }
-        
-        else {
             
-            sum =0;
+            if(a[i]-min > max_profit){
+                
+                
+                max_profit = a[i]-min;
+            }
+            
+            
+            
+            
         }
+      return max_profit;
         
-        
-        
-        
-    }
-        
-    return mx;    
         
     }
 };
