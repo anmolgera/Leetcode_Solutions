@@ -13,75 +13,65 @@ class Solution {
 public:
     int maxLevelSum(TreeNode* root) {
         
+        queue<TreeNode*>q;
         
-        
-      if(root == NULL){
-          
-          return 0;
-      }
-            
-    queue<TreeNode * > q;
         q.push(root);
-        
         
         int level =0;
         int max_level =0;
-        int global_sum =0;
+        int max_sum =0;
         
         while(!q.empty()){
             
-            
-            
+            int size = q.size();
             int sum =0;
             
-            int size = q.size();
-            
-            
             while(size--){
-            
-            
-            TreeNode* temp = q.front();
-            //q.push(temp);
-            q.pop();
-            
-            sum +=temp->val;
                 
-                if(temp->left!=NULL){
+                TreeNode * temp = q.front();
+                q.pop();
+                
+                sum +=temp->val;
+                
+                
+                if(temp->left){
                     
                     q.push(temp->left);
-                }
-                
-                if(temp->right!=NULL){
                     
-                     q.push(temp->right);
                 }
-            
-                }
-            
-            level ++;
-            
-            if(sum > global_sum){
                 
-                max_level = level;
-                global_sum = sum;
+                
+                  if(temp->right){
+                    
+                    q.push(temp->right);
+                    
+                }
+                
+                
+                
+                
+                
             }
             
+            level++;
+            
+            if(sum>max_sum){
+                
+                
+                max_sum = sum;
+                max_level = level;
+            }
+            
+            
+            
+            
+            
+            
         }
-            
-            
-            
-            
-            
-     return max_level;       
-            
-            
-        }
         
         
+       return max_level; 
         
         
-        
-        
-        
-
+    }
 };
