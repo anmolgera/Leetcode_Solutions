@@ -1,46 +1,44 @@
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& digits) {
-        
-      int n = digits.size();
-        
-       digits[n-1] +=1;
-       int carry = digits[n-1]/10;
-        digits[n-1] = digits[n-1]%10;
+    vector<int> plusOne(vector<int>& A) {
         
         
-       for(int i = n-2; i>=0; i--){
-           
-           if(carry ==1){
-               
-               digits[i] +=1;
-       carry = digits[i]/10;
-        digits[i] = digits[i]%10;
+     int n = A.size();
         
-               
-               
-           }
-           
-           
-           
-           
-           
-           
-       }
+     A[n-1] +=1;
         
+        int c = A[n-1]/10;
+        A[n-1] = A[n-1]%10;
         
+        for(int i = n-2;i>=0; i--){
+            
+            
+            if(c ==1){
+                
+                A[i] +=1;
+                c = A[i]/10;
+                A[i] = A[i]%10;
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
         
-    if(carry ==1){
-        digits.insert(digits.begin(),1);
-        
-        
-    }
-        
-        
-     return digits;   
+        if(c ==1){
+            A.insert(A.begin(),1);
+            
+        }
         
         
         
+        return A;
         
     }
 };
