@@ -1,22 +1,41 @@
 class Solution {
 public:
-    vector<int> addToArrayForm(vector<int>& A, int K) {
+    vector<int> addToArrayForm(vector<int>& A, int k) {
         
-       vector<int> ans;
-        int carry = 0, i = A.size()-1;
-        while(i>=0 || carry > 0 || K!=0){
-            if(K!=0){
-                carry += K%10;
-                K = K/10;
-            }
+        
+        vector<int> v;
+        int i = A.size()-1;
+        int carry =0;
+        
+        while(i>=0 || k!=0){
+            int sum =0;
+            
             if(i>=0){
-                carry += A[i];
-                i--;                
+                
+                sum +=A[i];
+                i--;
             }
-            ans.push_back(carry%10);
-            carry = carry/10;
+            if(k!=0){
+                
+                sum+=(k%10);
+                k = k/10;
+            }
+          sum += carry;
+          carry = sum/10;
+          sum = sum%10;
+         
+          v.push_back(sum);
+          
+            
+            
         }
-        reverse(ans.begin(),ans.end());
-        return ans;
+        
+        if(carry!=0){
+            
+            v.push_back(carry);
+        }
+        
+      reverse(v.begin(),v.end());
+        return v;
     }
 };
