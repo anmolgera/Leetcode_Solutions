@@ -5,31 +5,19 @@ public:
         
         int sum1 =0;
         int sum2 =0;
-        int n= nums.size();
-        
-        for(int i =0; i<n; i++){
+        for(int i =0; i<nums.size(); i++){
             
-            if(i%2==0){
-                
-                
+            
+            if(i%2){
                 
                 sum1 = max(sum1+nums[i],sum2);
             }
             
-            else {
-                
-                
-                sum2 = max(sum1, nums[i]+sum2);
-                
-                
-            }
             
-            
-            
+            else sum2 = max(sum1,sum2+nums[i]);
             
         }
         
       return max(sum1,sum2);  
-        
     }
 };
