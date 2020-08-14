@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestArithSeqLength(vector<int>& A) {
         
-         int n = A.size();
+        int n = A.size();
         int result = 0;
         vector<unordered_map<int, int>> dp(n);
         
