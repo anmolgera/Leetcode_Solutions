@@ -2,18 +2,21 @@ class Solution {
 public:
     bool isSubsequence(string s, string t) {
         
-    int slen =s.length(); int idx =0; int tlen = t.length();
+        int idx =0;
         
-for(int i =0; idx<slen && i <tlen ; i++){
-    
-    if(t[i]==s[idx]){
-        idx++;
-    }
-    
-    
-    
-}
-
-        return idx == slen;
+        
+        for(int i =0; i<t.length(); i++){
+            
+            if(s[idx]==t[i]){
+                
+                idx++;
+            }
+            
+            
+            
+        }
+        
+       return idx == s.length(); 
+        
     }
 };
