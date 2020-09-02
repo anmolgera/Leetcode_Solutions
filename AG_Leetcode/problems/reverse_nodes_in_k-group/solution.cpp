@@ -10,36 +10,29 @@
  */
 class Solution {
 public:
-  
-        
-        
-        ListNode* reverse(ListNode* first, ListNode* last)
-    {
-        ListNode* prev = last;
-        
-        while ( first != last )
-        {
-            auto tmp = first->next;
-            first->next = prev;
-            prev = first;
-            first = tmp;
+  ListNode *reverseBefore(ListNode *head, ListNode *node) {
+        ListNode *pre = node, *cur = head;
+        while (cur != node) {
+            ListNode *next = cur->next;
+            cur->next = pre;
+            pre = cur; cur = next;
         }
-        
-        return prev;
+        return pre;
     }
     
-    ListNode* reverseKGroup(ListNode* head, int k) 
-    {
-        auto node=head;
-        for (int i=0; i < k; ++i)
-        {
-            if ( ! node  )
-                return head; // nothing to do list too sort
-            node = node->next;
+
+    ListNode *reverseKGroup(ListNode *head, int k) {
+        // 1. Generate nodes for the current group;
+        ListNode *cur = head;
+        for (int i = 0; i < k; ++i) {
+            if (!cur) return head;
+            cur = cur->next;
         }
 
-        auto new_head = reverse( head, node);
-        head->next = reverseKGroup( node, k);
-        return new_head;
+//        2. Reverse the nodes for the current group;
+        ListNode *newHead = reverseBefore(head, cur);
+//        3. Reverse the nodes for the next group;
+        head->next = reverseKGroup(cur, k);
+        return newHead;
     }
 };
