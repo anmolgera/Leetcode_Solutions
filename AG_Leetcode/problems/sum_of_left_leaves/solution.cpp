@@ -12,7 +12,7 @@
 class Solution {
 public:
     
-    void dfs(TreeNode* root, int& sum){
+   /* void dfs(TreeNode* root, int& sum){
         
         if(root==NULL){
             
@@ -32,21 +32,19 @@ public:
         
         
     }
-    
+    */
     int sumOfLeftLeaves(TreeNode* root, bool isleft = false) {
         
         
-        if(!root){
-            
-            return 0;
-        }
+      if(root==NULL){
+          return 0;
+      }
         
-        if(root->left == root->right && isleft == true){
-            
-            return root->val;
-        }
+      if(root->left == root->right && isleft){
+          return root->val;
+      }
         
-        return  sumOfLeftLeaves(root->left, true) +  sumOfLeftLeaves(root->right, false);
+      return sumOfLeftLeaves(root->left,true) + sumOfLeftLeaves(root->right,false);
         
     }
 };
