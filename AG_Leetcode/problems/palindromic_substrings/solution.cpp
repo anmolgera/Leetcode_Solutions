@@ -2,7 +2,7 @@ class Solution {
 public:
     
     void pallindromic(string s, int left, int right, int&ans){
-        
+        //bool flag = true;
         while(left>=0 && right<s.size() && s[left]==s[right]){
             
             ans++;
@@ -11,6 +11,7 @@ public:
             
             
         }
+       // flag = false;
         
         
         
