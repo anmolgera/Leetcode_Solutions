@@ -1,6 +1,6 @@
 class Solution {
 public:
-   int seen [10002];
+    int seen [10002];
     
     
     bool cnpart(int start, int k , vector<int>& nums, int sum, int tar){
