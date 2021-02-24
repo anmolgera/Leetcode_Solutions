@@ -15,20 +15,14 @@ public:
             dp[i]%=mod;
             
             if(last[S[i-1]]!=-1){
-                dp[i]-=(((dp[last[S[i-1]]]%mod)+mod)%mod);
+                dp[i]-=((dp[last[S[i-1]]]));
                 dp[i]+=mod;
                 dp[i]%=mod;
             }
             
-            
             last[S[i-1]] = i-1;
             
-            
-            
-            
-            
-            
-        }
+         }
         return dp[S.length()]-1;
     }
 };
