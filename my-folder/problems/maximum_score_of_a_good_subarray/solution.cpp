@@ -7,10 +7,10 @@ public:
 
     int n = A.size();
         
-    vector<int> l(n,-1); // index of the nearest greater to left
-    vector<int> r(n,n); // index of the nearest greater to right
+    vector<int> l(n,-1); // index of the nearest smaller to left
+    vector<int> r(n,n); // index of the nearest smaller to right
         
-    // finding nearest greater to left for all indexes
+    // finding nearest smaller to left for all indexes
         
     st.push({A[0],0});
     for(int i =1; i<A.size(); i++){
@@ -31,7 +31,7 @@ public:
         st.pop();
      }
     
-    // finding nearest greater to right for all indexes
+    // finding nearest smaller to right for all indexes
     st.push({A[n-1],n-1});
     for(int i = n-2; i>=0; i--){
         while(!st.empty() && st.top().first>=A[i]){
@@ -49,17 +49,8 @@ public:
         }
     }
     
-  /*  for(int i =0; i<n; i++){
-        cout<<l[i]<<" ";
-    }
-    cout<<endl;
-        
-    for(int i =0; i<n; i++){
-        cout<<r[i]<<" ";
-    }
+
     
-    cout<<endl;
-    */
     int ans =0;
     for(int i = 0; i<n; i++){
       if(l[i]<k && r[i]>k){
