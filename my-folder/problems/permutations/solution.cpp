@@ -1,42 +1,42 @@
 class Solution {
 public:
-    void backtrack(vector<vector<int>>&v, vector<int> &comb, int start, vector<int> &nums, int k){
+    
+    void func(vector<vector<int>>&ans, vector<int>nums,vector<int>&res, int i, int n){
         
-        if(comb.size()==k){
-            vector<int> a = comb;
-            v.push_back(a);
-            return;
+    if(res.size()==n){
+        vector<int> ne = res;
+        ans.push_back(res);
+        return ;
+    }
+        
+    for(int i =0; i<n; i++){
+        bool flag =false;
+        for(int j =0; j<res.size(); j++){
+            if(res[j]==nums[i]){
+                flag = true;
+                break;
+            }
         }
         
+        if(flag) continue;
+        res.push_back(nums[i]);
+        func(ans,nums,res,0,n);
+        res.pop_back();
+    }
         
-        for(int i = 0; i<k; i++){
-            bool flag = false;
-            for(int j =0; j<comb.size(); j++){
-                if(comb[j]==nums[i]){
-                    flag = true;
-                    break;
-                }
-            }
-            if(flag){
-                continue;
-            }
-            comb.push_back(nums[i]);
-            backtrack(v,comb,0,nums,k);
-            comb.pop_back();
-        }
+    return;   
         
-        return;
     }
     
     
     
     
+    
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> v;
-        vector<int> comb;
-        int k = nums.size();
-        backtrack(v,comb,0,nums,k);
-        return v;
-        
+     int n = nums.size();
+     vector<vector<int>>ans;
+     vector<int> res;
+     func(ans,nums,res,0,n);
+    return ans;
     }
 };
