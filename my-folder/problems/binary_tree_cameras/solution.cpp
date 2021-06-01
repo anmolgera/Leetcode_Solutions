@@ -11,34 +11,26 @@
  */
 class Solution {
 public:
-    
-    #define Not_needed 0
-    #define No_camera 1
-    #define has_camera 2
     int ans =0;
     
     
-    int dfs(TreeNode* root){
+    
+    int func(TreeNode*root){
+    
+    if(root == NULL) return 1;
+    int l = func(root->left);
+    int r = func(root->right);
+    if(l== 0 || r == 0){
         
-        if(root == NULL) return Not_needed;
-        int left = dfs(root->left);
-        int right = dfs(root->right);
+        ans++;
+        return 2;
+    }
         
-        if(left == No_camera || right == No_camera){
-            ans++;
-            return has_camera;
-        }
+    else if(l == 2 || r ==  2){
+        return 1;
+    }
         
-        
-        else if(left == has_camera || right == has_camera){
-            return Not_needed;
-        }
-        
-        else {
-            return No_camera;
-        }
-        
-        
+    else return 0;
         
         
         
@@ -46,16 +38,9 @@ public:
     
     
     int minCameraCover(TreeNode* root) {
-        
-        if(dfs(root)==No_camera) ans++;
+        if(root == NULL) return 0;
+        if(root ->left == NULL && root->right ==NULL) return 1;
+        if(func(root)==0) ans++;
         return ans;
-        
-        
-        
-        
-        
-        
-        
-        
     }
 };
