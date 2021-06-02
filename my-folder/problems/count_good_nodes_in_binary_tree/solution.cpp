@@ -11,18 +11,11 @@
  */
 class Solution {
 public:
-    int goodNodes(TreeNode* root, int ma = -10000) {
+    int goodNodes(TreeNode* root, int mx =-10000) {
         
-        if(root==NULL){
-            
-            return 0;
-        }
-        
-        int res = root->val>=ma ? 1:0;
-        
-        res+=  goodNodes(root->left, max(ma,root->val));
-        res+=  goodNodes(root->right, max(ma,root->val));
-        return res;
-        
+        if(root==NULL) return 0;
+        int res =0;
+        if(root->val>=mx) res =1;
+        return goodNodes(root->left,max(mx,root->val)) + goodNodes(root->right,max(mx,root->val))  + res;
     }
 };
