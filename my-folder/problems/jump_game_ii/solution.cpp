@@ -2,17 +2,14 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
     
-    int n = nums.size()-1;
-    int pos = n;
     int ans =0;
-    while(pos!=0){
-        
-        for(int i =0; i<n; i++){
-            if(nums[i]+i>=pos){
-                ans++;
-                pos =i;
-                break;
-            }
+    int mx =0;
+    int currmax =0;
+    for(int i =0; i<nums.size()-1;i++){
+        mx = max(mx,nums[i]+i);
+        if(i==currmax){
+            ans++;
+            currmax = mx;
         }
     }
     return ans;
