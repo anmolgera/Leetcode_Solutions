@@ -1,25 +1,17 @@
 class Solution {
 public:
-    
-  
-    
     bool canJump(vector<int>& nums) {
-    // Let us define an index if we can reach the last position from that particular index
-    vector<int> a(nums.size(),-1);
     int n = nums.size();
-    a[n-1]  =1;   
+    vector<int> dp(n,false);
+    dp[n-1] = true;
+    int end = n-1;
     for(int i = n-2; i>=0; i--){
-    int farthest = min(i+nums[i],n-1);
-    for(int j = i+1; j<=farthest; j++){
-        if(a[j]==1){
-            a[i] =1;
-            
+        if(i+nums[i]>=end){
+            dp[i] = true;
+            end = i;
         }
-    }   
-        
     }
-        
     
-    return a[0]==1;
+    return dp[0];
     }
 };
