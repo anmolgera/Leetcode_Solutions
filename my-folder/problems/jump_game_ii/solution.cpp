@@ -1,17 +1,42 @@
 class Solution {
 public:
+    
+    //[2,3,1,1,4]
     int jump(vector<int>& nums) {
     
-    int ans =0;
-    int mx =0;
-    int currmax =0;
-    for(int i =0; i<nums.size()-1;i++){
-        mx = max(mx,nums[i]+i);
-        if(i==currmax){
-            ans++;
-            currmax = mx;
-        }
+    int level =0;
+    int curmax =0;
+    int glbmax =0;
+    for(int i =0; i<nums.size()-1 ; i++){
+        
+       glbmax = max(glbmax,i+nums[i]);
+       if(i==curmax){       //q.size();
+           level++;
+           curmax = glbmax;
+       }
+        
     }
-    return ans;
+    
+    return level;
+    
+   
     }
+    
+   // [2,3,1,1,4]
+   //curmax =0;
+   //glbmax =4;
+   //i =3;
+   //curmax = 4;
+   //level =2;
+    
+  
+   
+   
+   
+    
+    
+    
+    
+    
+    
 };
