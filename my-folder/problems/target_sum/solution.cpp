@@ -1,33 +1,31 @@
 class Solution {
 public:
+    
+    
+   
+    void recur(vector<int>& nums, int target, int i, int s, int &cnt){
+        
+        if(i==nums.size()){
+            if(s==target){
+                cnt++;
+            }
+        }
+        
+        else {
+            
+            recur(nums,target, i+1, s-nums[i],cnt);
+            recur(nums,target, i+1, s+nums[i],cnt);
+            
+        }
+        
+        
+        
+        
+    }
+    
+    int findTargetSumWays(vector<int>& nums, int target) {
     int cnt =0;
-    
-   void calculate(vector<int>&nums, int i, int sum, int S){
-       
-       if(i==nums.size()){
-           if(sum==S){
-               cnt++;
-           }
-       }
-       
-       else {
-           
-           
-           calculate(nums,i+1,sum+nums[i],S);
-           calculate(nums,i+1,sum-nums[i],S);
-       }
-       
-       
-       
-       
-       
-   } 
-    
-    
-    
-    
-    int findTargetSumWays(vector<int>& nums, int S) {
-        calculate(nums,0,0,S);
-        return cnt;
+    recur(nums,target,0, 0, cnt);
+    return cnt;
     }
 };
