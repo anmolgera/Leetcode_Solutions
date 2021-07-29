@@ -1,54 +1,49 @@
 class LRUCache {
 public:
-    
+    int c;
     list<int> dl;
-    int cap =0;
-    
-    unordered_map<int,pair<list<int> :: iterator,int>> mp;
+    unordered_map<int,pair<list <int> :: iterator, int >> mp;
     
     LRUCache(int capacity) {
-        cap = capacity;
+        c = capacity;
     }
     
     void movetofirst(int key){
-        
-        dl.erase(mp[key].first);
-        dl.push_front(key);
-        mp[key].first = dl.begin();
+    dl.erase(mp[key].first);
+    dl.push_front(key);
+    mp[key].first = dl.begin();
         
         
     }
     
     int get(int key) {
-        
-        if(mp.find(key)==mp.end()){
-            return -1;
-        }
-        
-        movetofirst(key);
-        return mp[key].second;
-        
+    if(mp.find(key)==mp.end()) return -1;
+    movetofirst(key);
+    return mp[key].second;
     }
     
     void put(int key, int value) {
-    
     if(mp.find(key)!=mp.end()){
         mp[key].second = value;
         movetofirst(key);
-    }
-    else {
-       
-       dl.push_front(key);
-       mp[key] = {dl.begin(),value};
-       cap--;
-    }
+    }  
         
-    if(cap<0){
-        mp.erase(dl.back());
-        dl.pop_back();
-        cap++;
+     else {
+         
+      dl.push_front(key);
+      mp[key] = {dl.begin(),value};
+      movetofirst(key);
+      c--;
+      
+      if(c<0){
+      mp.erase(dl.back());
+      dl.pop_back();
+      c++;
+          
+      }
+         
+     } 
         
-    }
         
     }
 };
