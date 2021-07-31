@@ -1,26 +1,25 @@
 class Solution {
 public:
     
-    int helper(vector<int>&nums, int s, int res, int i){
+    int dfs(vector<int>&nums, int idx, int sum, int res){
         
-        if(i>=nums.size()){
-            res+=s;
+        if(idx>=nums.size()) {
+            
+            res+=sum;
             return res;
         }
         
-       
-      int x = helper(nums,s^nums[i],res,i+1);
-      int y = helper(nums,s,res,i+1);
-      return x+y;  
+        int x = dfs(nums,idx+1,sum^nums[idx],res);
+        int y = dfs(nums,idx+1,sum,res);
+                
+        return x+y; 
         
     }
     
     
-    
-    
     int subsetXORSum(vector<int>& nums) {
-    int result =0;
-    result = helper(nums,0,0,0);
-    return result;
+    //int result =0;
+    int x = dfs(nums,0,0,0);
+    return x;
     }
 };
