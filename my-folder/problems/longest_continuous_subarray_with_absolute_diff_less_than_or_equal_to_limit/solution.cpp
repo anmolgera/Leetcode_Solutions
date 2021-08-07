@@ -1,7 +1,7 @@
 class Solution {
 public:
     int longestSubarray(vector<int>& nums, int limit) {
-        int i =0;
+     int i =0;
         int j;
         
         multiset<int> m;
@@ -12,7 +12,6 @@ public:
               m.erase(m.find((nums[i++])));
           }
         }
-        return j-i;
-        
+        return j-i;    
     }
 };
