@@ -1,15 +1,29 @@
 class Solution {
 public:
-    bool winnerSquareGame(int n) {
-    vector<bool> dp (n+1, false);
-    for(int  i=1; i<=n; i++){
-        for(int j =1; j*j<=i; j++){
-            if(dp[i-j*j]==false){
-                dp[i] = true;
-                break;
+    const static int sz = 1e5+7;
+    int arr[sz];
+    bool func(int n){
+        
+        if(n==0) return false;
+        if(n==1) return true;
+        //int x = sqrt(n);
+        //if(x*x == n) return true;
+        if(arr[n]!=-1) return arr[n];
+        for(int i =1; i*i<=n; i++){
+            if(func(n-i*i) == false){
+                arr[n] = true;
+                return arr[n];
             }
         }
+        
+        return arr[n] = false;
+        
+        
     }
-    return dp[n];
+    
+    
+    bool winnerSquareGame(int n) {
+    memset(arr,-1, sizeof(arr));
+    return func(n);  
     }
 };
