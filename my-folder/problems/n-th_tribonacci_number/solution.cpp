@@ -1,11 +1,21 @@
 class Solution {
 public:
+    int dp[38];
     
-    int dp[38] = {};
-    int tribonacci(int n) {
-    if(n==0 || n==1 ) return n;
+    int func(int n){
+    if(n<=1) return n;
     if(n==2) return 1;
-    if(dp[n]!=0) return dp[n];
-    return dp[n] = tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);
+    if(dp[n]!=-1) return dp[n];
+    return dp[n] = func(n-3) + func(n-1) + func(n-2);
+         
+    }
+    
+    int tribonacci(int n) {
+    for(int i =0; i<=37; i+=1){
+        dp[i] =-1;
+    } 
+    
+    return func(n);
+    //return dp[n];
     }
 };
