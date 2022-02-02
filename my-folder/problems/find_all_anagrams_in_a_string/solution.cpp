@@ -1,51 +1,30 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
+     int s_len = s.length();
+        int p_len = p.length();
         
-     if(p.length()>s.length()){
-         return {};
-     }    
-     vector<int> v (256,0);
-     for(auto i : v){
-         i =0;
-     }
-     vector<int> m(256,0);
-     for(auto i : m){
-         i =0;
-     }   
-     for(int i =0; i<p.length(); i++){
-         m[p[i]]++;
-         
-         //cout<<m[p[i]];
-     }
-    
-     //cout<<endl;
-     vector<int> v1;
-     for(int i =0; i<=s.length()-p.length(); i++){
-         v = m;
-         
-         bool flag = true;
-         for(int j =i; j<i+p.length(); j++){
-         
-               v[s[j]]--;
+        if(s.size() < p.size()) return {};
+        
+        vector<int> freq_p(26,0);
+        vector<int> window(26,0);
+        
+        //first window
+        for(int i=0;i<p_len;i++){
+            freq_p[p[i]-'a']++;
+            window[s[i]-'a']++;
+        }
+        
+        vector<int> ans;
+        if(freq_p == window) ans.push_back(0);
+        
+        for(int i=p_len;i<s_len;i++){
+            window[s[i-p_len] - 'a']--;
+            window[s[i] - 'a']++;
+            
+            if(freq_p == window) ans.push_back(i-p_len+1);
+        }
+        return ans;
            
-         }
-         
-         for(auto i : v){
-             //cout<<i;
-            if(i!=0){
-                flag = false;
-            }} //cout<<endl;
-         if(flag){
-             v1.push_back(i);
-         }
-        
-     }
-        
-      return v1;  
-        
-        
-        
-        
     }
 };
