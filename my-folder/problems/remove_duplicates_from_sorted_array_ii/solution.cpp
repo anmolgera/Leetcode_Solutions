@@ -2,7 +2,7 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         int n = nums.size();
-        int i =2;
+        int i = 2;
         if(n<3){
             return n;
         }
@@ -13,6 +13,6 @@ public:
                 i++;
             }
         }
-        return i;
+        return i;   
     }
 };
