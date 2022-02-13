@@ -8,6 +8,11 @@ public:
         if(comb.size()==k ){
             vector<int> a = comb;
             v.push_back(a);
+            for(int i =0; i<a.size(); i++){
+                cout<<a[i]<<" ";
+            }
+            cout<<endl;
+            return;
         }
       
         for(int i = start; i<=n; i++){
@@ -16,7 +21,7 @@ public:
             comb.pop_back();
         }
        
-      return;
+      //return;
         
         
     }
