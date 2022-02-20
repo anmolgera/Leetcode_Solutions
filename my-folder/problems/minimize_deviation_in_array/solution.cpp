@@ -1,5 +1,6 @@
 class Solution {
 public:
+
     int minimumDeviation(vector<int>& nums) {
         
         int res = INT_MAX, min_n = INT_MAX;
