@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-     
     vector<int> v;
     deque<int> dq;
         
@@ -19,8 +18,6 @@ public:
         }
     }
     
-    return v;
-        
-        
+    return v;   
     }
 };
