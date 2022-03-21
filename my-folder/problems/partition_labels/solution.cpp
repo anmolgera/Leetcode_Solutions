@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> partitionLabels(string S) {
-        if(S.length()==0){
+            if(S.length()==0){
             return {};
         }
         
@@ -25,6 +25,6 @@ public:
             
             
         }
-        return v;
+        return v;    
     }
 };
