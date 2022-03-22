@@ -1,7 +1,6 @@
 class Solution {
 public:
     string getSmallestString(int n, int k) {
-     
     string res = string(n,'a');
     k-=n;
     while(k>0 && n>0){
@@ -10,7 +9,6 @@ public:
         k-=min(25,k);
     }
         
-    return res;
-        
+    return res;   
     }
 };
