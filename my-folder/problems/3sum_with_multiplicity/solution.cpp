@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int mod = 1e9+7;
+ int mod = 1e9+7;
     int threeSumMulti(vector<int>& arr, int target) {
     int cnt =0;
     map<int,long> mp;
