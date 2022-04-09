@@ -1,34 +1,21 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int, int> m;
+        for (int num : nums)
+            ++m[num];
         
-        map<int,int> mp;
-        for(int i =0; i<nums.size(); i++){
-            
-            mp[nums[i]]++;
-            
-            
+        vector<vector<int>> buckets(nums.size() + 1); 
+        for (auto p : m)
+            buckets[p.second].push_back(p.first);
+        
+        vector<int> ans;
+        for (int i = buckets.size() - 1; i >= 0 && ans.size() < k; --i) {
+            for (int num : buckets[i]) {
+                ans.push_back(num);
+                
+            }
         }
-        
-        vector<pair<int,int>> v;
-        vector<int> res;
-        
-        for(auto i : mp){
-            v.push_back({i.second,i.first});
-        }
-        
-       priority_queue<pair<int,int>> pq;
-       
-       for(int i =0; i<v.size(); i++){
-           pq.push(v[i]);
-       }
-        
-       int sum =0;
-        for(int i =0; i<k; i++){
-            auto x = pq.top();
-            pq.pop();
-            res.push_back(x.second);
-        }
-        return res;
+        return ans;    
     }
 };
