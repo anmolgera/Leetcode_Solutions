@@ -11,7 +11,6 @@
  */
 class Solution {
 public:
-    
     TreeNode* first = NULL;
     TreeNode* second = NULL;
     TreeNode* prev =NULL;
