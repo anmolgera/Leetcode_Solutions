@@ -1,62 +1,43 @@
-class MyHashMap {
+struct Node {
 public:
-    /** Initialize your data structure here. */
-    vector<pair<int,int>> v;
-    MyHashMap() {
-        
-    }
-    
-    /** value will always be non-negative. */
-    void put(int key, int value) {
-        bool flag = false;
-        for(int i =0; i<v.size();i++){
-            if(v[i].first==key){
-                flag = true;
-                v[i].second=value;
-                
-            }
-        }
-        if(flag){
-            return;
-        }
-        
-        v.push_back({key,value});
-    }
-    
-    /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
-    int get(int key) {
-         for(int i =0; i<v.size();i++){
-            if(v[i].first==key){
-                //flag = true;
-               return v[i].second;
-                
-            }
-        }
-        return -1;
-    }
-    
-    /** Removes the mapping of the specified value key if this map contains a mapping for the key */
-    void remove(int key) {
-       bool flag = false;
-       for(int i =0; i<v.size();i++){
-            if(v[i].first==key){
-                flag = true;
-                //v[i].second++;
-                v.erase(v.begin()+i);
-                break;
-                
-            }
-        }
-        if(flag){
-            return;
-        }
+    int key, val;
+    Node* next;
+    Node(int k, int v, Node* n) {
+        key = k;
+        val = v;
+        next = n;
     }
 };
-
-/**
- * Your MyHashMap object will be instantiated and called as such:
- * MyHashMap* obj = new MyHashMap();
- * obj->put(key,value);
- * int param_2 = obj->get(key);
- * obj->remove(key);
- */
+class MyHashMap {
+public:
+    const static int size = 19997;
+    const static int mult = 12582917;
+    Node* data[size];
+    int hash(int key) {
+        return (int)((long)key * mult % size);
+    }
+    void put(int key, int val) {
+        remove(key);
+        int h = hash(key);
+        Node* node = new Node(key, val, data[h]);
+        data[h] = node;
+    }    
+    int get(int key) {
+        int h = hash(key);
+        Node* node = data[h];
+        for (; node != NULL; node = node->next)
+            if (node->key == key) return node->val;
+        return -1;
+    }    
+    void remove(int key) {
+        int h = hash(key);
+        Node* node = data[h];
+        if (node == NULL) return;
+        if (node->key == key) data[h] = node->next;
+        else for (; node->next != NULL; node = node->next)
+            if (node->next->key == key) {
+                node->next = node->next->next;
+                return;
+            }
+    }
+};
